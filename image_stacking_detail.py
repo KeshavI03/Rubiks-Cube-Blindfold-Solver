@@ -8,33 +8,35 @@ def get_color(r, g, b):
     # print('green: ' + str(g))
     # print('blue:  ' + str(b))
 
-    scale = max(r, g, b)
+    # scale = max(r, g, b)
 
-    r_n = float(r / scale)
-    g_n = float(g / scale)
-    b_n = float(b / scale)
+    # r_n = float(r / scale)
+    # g_n = float(g / scale)
+    # b_n = float(b / scale)
+
+    # # print('red:   ' + str(r_n))
+    # # print('green: ' + str(g_n))
+    # # print('blue:  ' + str(b_n))
 
 
-    if abs(r_n-b_n) < .1 and g_n != 1:
-        print('white')
-    elif b_n == 1:
-        print('blue')
-    else:
-        if g_n == 1:
-            if abs(r_n-b_n) > abs(r_n-g_n):
-                print('green')
-            else:
-                print('yellow')
-        else:
-            score_r = abs(r_n-g_n)
-            score_b = abs(b_n-g_n)
+    # if abs(r_n-b_n) < .1 and g_n != 1:
+    #     print('white')
+    # elif b_n == 1:
+    #     print('blue')
+    # else:
+    #     if g_n == 1:
+    #         if abs(r_n-b_n) < abs(r_n-g_n):
+    #             print('green')
+    #         else:
+    #             print('yellow')
+    #     else:
 
-            if .5 < score_r / score_b and score_r / score_b > 1.5:
-                print('orange')
-            elif score_r > score_b:
-                print('red')
-            else:
-                print('yellow')
+    #         if abs(r_n - g_n) < .1 and g_n > b_n:
+    #             print('yellow')
+    #         elif g_n > b_n:
+    #             print('orange')
+    #         else:
+    #             print('red')
 
 
     print('--------')
@@ -57,13 +59,17 @@ cent_h = int(f_height/2)
 
 f_min = min(f_height, f_width)
 
-size = int(f_min/36)
+size = int(f_min/30)
 
 shift = int(f_min/6)  
 
 color_b = 0
 color_g = 0
 color_r = 0
+
+face_num = 0
+
+colors = []
 
 while(True):
       
@@ -99,9 +105,13 @@ while(True):
                 color_r = np.mean(frame[(cent_h - size + shift * j):(cent_h + size + shift * j),
                                     (cent_w - size + shift * i):(cent_w + size + shift * i), 2])
 
-                get_color(color_r, color_g, color_b)
+                colors.append(None)
+                colors[face_num].append([color_r, color_g, color_b])
+                face_num += 1
+                # get_color(color_r, color_g, color_b)
 
     if let == ord('q'):
+        get_color(colors)
         break
   
 # After the loop release the cap object
