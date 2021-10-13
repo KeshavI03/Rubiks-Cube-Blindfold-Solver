@@ -66,33 +66,10 @@ def get_edges():
 
 
 
-# c =['boy',
-# 	'gwr',
-# 	'yog',
-# 	'brw',
-# 	'yrb',
-# 	'gry',
-# 	'wob',
-# 	'gow']
 
 c_default =['bwo','boy','byr','brw','gwr','gry','gyo','gow']
 
 l_ar = 'aqnbmjcifderushvglwkpxot'
-
-
-
-# e =['ry',
-# 	'by',
-# 	'rg',
-# 	'wo',
-# 	'wg',
-# 	'wr',
-# 	'br',
-# 	'og',
-# 	'wb',
-# 	'gy',
-# 	'oy',
-# 	'bo']
 
 e_default =['rw','br','ob','oy','yr','gw','gr','by','ow','og','bw','yg']
 

@@ -3,45 +3,47 @@ import cv2
 import numpy as np
 
 
-def get_color(r, g, b):
-    # print('red:   ' + str(r))
-    # print('green: ' + str(g))
-    # print('blue:  ' + str(b))
+def get_color(colors):
 
-    # scale = max(r, g, b)
+    blue = colors[0, 1, 1]
 
-    # r_n = float(r / scale)
-    # g_n = float(g / scale)
-    # b_n = float(b / scale)
+    red = colors[1, 1, 1]
 
-    # # print('red:   ' + str(r_n))
-    # # print('green: ' + str(g_n))
-    # # print('blue:  ' + str(b_n))
+    yellow = colors[2, 1, 1]
 
+    orange = colors[3, 1, 1]
 
-    # if abs(r_n-b_n) < .1 and g_n != 1:
-    #     print('white')
-    # elif b_n == 1:
-    #     print('blue')
-    # else:
-    #     if g_n == 1:
-    #         if abs(r_n-b_n) < abs(r_n-g_n):
-    #             print('green')
-    #         else:
-    #             print('yellow')
-    #     else:
+    white = colors[4, 1, 1]
 
-    #         if abs(r_n - g_n) < .1 and g_n > b_n:
-    #             print('yellow')
-    #         elif g_n > b_n:
-    #             print('orange')
-    #         else:
-    #             print('red')
+    green = colors[5, 1, 1]
 
+    print(blue)
+    print('-------')
 
-    print('--------')
-    # for color in color_combos:
-    # print(np.linalg.norm(given_color_norm - color))
+    color_options = 'bryowg'
+
+    col_string = ''
+
+    for l in range(0, 6):
+        for j in range(0,3):
+            col_string = ''
+            for i in range(0,3):
+
+                guessed_color = 0
+                color_dist = 10000
+
+                for k in range(0, 6):
+                    dist = pow(colors[k, 1, 1, 0]-colors[l, i, j, 0] , 2) + pow(colors[k, 1, 1, 1]-colors[l, i, j, 1] , 2) + pow(colors[k, 1, 1, 2]-colors[l, i, j, 2] , 2)
+
+                    if dist < color_dist:
+                        color_dist = dist
+                        guessed_color = k
+
+                col_string += color_options[guessed_color]
+
+                # print(colors[0, i, j])
+            print(col_string)
+        print('------')
 
 
 # def color(r, g, b):
@@ -69,7 +71,7 @@ color_r = 0
 
 face_num = 0
 
-colors = []
+colors = np.zeros((6, 3, 3, 3) ,dtype=int)
 
 while(True):
       
@@ -105,10 +107,12 @@ while(True):
                 color_r = np.mean(frame[(cent_h - size + shift * j):(cent_h + size + shift * j),
                                     (cent_w - size + shift * i):(cent_w + size + shift * i), 2])
 
-                colors.append(None)
-                colors[face_num].append([color_r, color_g, color_b])
-                face_num += 1
-                # get_color(color_r, color_g, color_b)
+                # colors.append(None)
+                # colors[i, j, face_num] = [color_r, color_g, color_b]
+                colors[face_num, i+1, j+1] = [color_r, color_g, color_b]
+                # get_color(colors)
+
+        face_num += 1
 
     if let == ord('q'):
         get_color(colors)
