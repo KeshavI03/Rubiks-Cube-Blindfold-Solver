@@ -1,6 +1,7 @@
 # import the opencv library
 import cv2
 import numpy as np
+import blindfold_solver2
 
 
 def get_color(colors):
@@ -17,8 +18,7 @@ def get_color(colors):
 
     green = colors[5, 1, 1]
 
-    print(blue)
-    print('-------')
+    f_c = []
 
     color_options = 'bryowg'
 
@@ -42,8 +42,11 @@ def get_color(colors):
                 col_string += color_options[guessed_color]
 
                 # print(colors[0, i, j])
-            print(col_string)
-        print('------')
+            f_c.append(col_string)
+
+    # print(f_c)
+
+    blindfold_solver2.solve(f_c[0:3], f_c[3:6], f_c[6:9], f_c[9:12], f_c[12:15], f_c[15:18])
 
 
 # def color(r, g, b):

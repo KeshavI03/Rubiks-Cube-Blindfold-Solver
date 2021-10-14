@@ -1,33 +1,7 @@
 # Example Scramble: D2 U F' B D R' U R' U2 B' R' L F U R D2 F' L U' B L B D2 R2 B'   (green face towards white top dont forget to reorient after)
 
 
-b_face = ['brg',
-		  'wbb',
-		  'bry']
-
-r_face = ['rgg',
-		  'orr',
-		  'bbr']
-
-y_face = ['oyr',
-		  'byr',
-		  'yyo']
-
-o_face = ['wyy',
-		  'wog',
-		  'byo']
-
-w_face = ['oow',
-		  'wwg',
-		  'wor']
-
-g_face = ['ywg',
-		  'bgg',
-		  'gow']
-
-
-
-def get_corners():
+def get_corners(b_face, r_face, y_face, o_face, w_face, g_face):
 
 	cr = []
 	cr.append(''.join([b_face[0][0] ,w_face[0][0] ,o_face[0][2] ]))
@@ -44,7 +18,7 @@ def get_corners():
 
 
 
-def get_edges():
+def get_edges(b_face, r_face, y_face, o_face, w_face, g_face):
 
 	ed = []
 	ed.append(''.join([b_face[0][1] , o_face[0][1] ]))
@@ -186,11 +160,37 @@ def solve_edge(e):
 	if e_num != 1: print(let)
 
 
-def solve():
-	solve_corners(get_corners())
+def solve(b, r, y, o, w, g):
+	solve_corners(get_corners(b, r, y, o, w, g))
 	print('----')
-	solve_edge(get_edges())
+	solve_edge(get_edges(b, r, y, o, w, g))
 
 # print(get_corners())
 
 # print(get_edges())
+
+# b = ['brg',
+# 	 'wbb',
+# 	 'bry']
+
+# r = ['rgg',
+# 	 'orr',
+# 	 'bbr']
+
+# y = ['oyr',
+# 	 'byr',
+# 	 'yyo']
+
+# o = ['wyy',
+# 	 'wog',
+# 	 'byo']
+
+# w = ['oow',
+# 	 'wwg',
+# 	 'wor']
+
+# g = ['ywg',
+# 	 'bgg',
+# 	 'gow']
+
+# solve(b, r, y, o, w, g)
