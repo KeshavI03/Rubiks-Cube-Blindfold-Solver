@@ -44,7 +44,7 @@ def get_color(colors):
                 # print(colors[0, i, j])
             f_c.append(col_string)
 
-    # print(f_c)
+    print(f_c)
 
     blindfold_solver2.solve(f_c[0:3], f_c[3:6], f_c[6:9], f_c[9:12], f_c[12:15], f_c[15:18])
 
@@ -118,10 +118,10 @@ while(True):
         face_num += 1
 
     if let == ord('q'):
-        get_color(colors)
         break
   
 # After the loop release the cap object
 vid.release()
 # Destroy all the windows
 cv2.destroyAllWindows()
+get_color(colors)
