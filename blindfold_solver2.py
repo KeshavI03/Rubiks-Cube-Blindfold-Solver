@@ -1,6 +1,5 @@
 # Example Scramble: D2 U F' B D R' U R' U2 B' R' L F U R D2 F' L U' B L B D2 R2 B'   (green face towards white top dont forget to reorient after)
 
-
 def get_corners(b_face, r_face, y_face, o_face, w_face, g_face):
 
 	cr = []
@@ -101,6 +100,7 @@ def l_to_e(l, arr):
 
 
 def solve_corners(c):
+	code_word = ''
 
 	tests = 'ajcrulpt'
 	solved = [1, 0, 0, 0, 0, 0, 0, 0]
@@ -113,23 +113,26 @@ def solve_corners(c):
 	# for l in range(0, 20):
 		let = c_to_l(l_to_c(let, c))
 		c_num = int(l_ar.index(let)/3)
-		if c_num != 0: print(let)
+		if c_num != 0: code_word += let
 
 
 		if solved[c_num] == 1:
 			c_num = solved.index(0)
 			let = tests[c_num]
 			solved[c_num] = 1
-			print(let)
+			code_word += let
 
 		solved[c_num] = 1
 
 	let = c_to_l(l_to_c(let, c))
 	c_num = int(l_ar.index(let)/3)
-	if c_num != 0: print(let)
+	if c_num != 0: code_word += let
+
+	return code_word
 
 
 def solve_edge(e):
+	code_word = ''
 
 	tests = 'abcdnjlhuvwx'
 	solved = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -143,27 +146,30 @@ def solve_edge(e):
 		let = e_to_l(l_to_e(let, e))
 		e_num = int(e_ar.index(let)/2)
 
-		if e_num != 1: print(let)
+		if e_num != 1: code_word += let
 
 
 		if solved[e_num] == 1:
 			e_num = solved.index(0)
 			let = tests[e_num]
 			solved[e_num] = 1
-			print(let)
+			code_word += let
 
 		solved[e_num] = 1
 
 	let = e_to_l(l_to_e(let, e))
 	e_num = int(e_ar.index(let)/2)
 
-	if e_num != 1: print(let)
+	if e_num != 1: code_word += let
+
+	return code_word
 
 
 def solve(b, r, y, o, w, g):
-	solve_corners(get_corners(b, r, y, o, w, g))
+
+	print(solve_corners(get_corners(b, r, y, o, w, g)))
 	print('----')
-	solve_edge(get_edges(b, r, y, o, w, g))
+	print(solve_edge(get_edges(b, r, y, o, w, g)))
 
 # print(get_corners())
 
